@@ -33,6 +33,10 @@ else
 fi
 [ -z "$cmd" ] && exit 0   # nothing to inspect -> allow
 
+# Normalize non-separator whitespace (tab, CR, FF, VT) to spaces, so a tab between the command word
+# and its argument (`rm<TAB>-rf`, `git<TAB>commit`) cannot slip the space-anchored matcher below.
+cmd="$(printf '%s' "$cmd" | tr '\t\r\f\v' '    ')"
+
 # Unambiguous source-mutation / destructive / publish idioms, anchored to each segment's LEADING
 # command word. The command is split on shell separators (; | & && || and newlines); per segment we
 # peel leading wrappers / subshell-or-brace openers / VAR=val assignments, then test the leading word
