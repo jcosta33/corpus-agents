@@ -69,6 +69,11 @@ for seg in $(printf '%s' "$cmd" | tr ';|&\n' '\n\n\n\n'); do
         seg="${seg#"${seg%%[![:space:]]*}"}"
     done
 
+    # Reduce a path-qualified command word to its basename so `/bin/rm`, `./rm`, `/usr/bin/sed -i`,
+    # `/usr/bin/git commit` match the same idioms as their bare forms.
+    word="${seg%% *}"
+    case "$word" in */*) seg="${word##*/}${seg#"$word"}" ;; esac
+
     # git: match by SUBCOMMAND, tolerating global options (`-C <path>`, `-c k=v`, `--no-pager`, ...).
     case "$seg" in
         "git "*)

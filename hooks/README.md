@@ -55,7 +55,8 @@ and — where you want their shell use kept read-only — the Tier-2 `swarm-audi
 These are **toolable/partial** (ADR-0063), not "enforced":
 - The guard is a **tripwire, not a wall** — a write where the leading word looks innocent still escapes
   (`find . -exec rm {} \;`, a write inside `python`/`node`, a heredoc to an editor, base64, or `xargs`
-  of an unlisted writer); output redirections (`>`/`tee`) are deliberately **not** matched (too
+  of an unlisted writer), as do **writers not on the denylist** (`git branch -D`, `cp`, `mkdir`,
+  `touch`, `dd`); output redirections (`>`/`tee`) are deliberately **not** matched (too
   false-positive-prone against legit build/test writes) — tune the denylist to your repo.
 - Both hooks are **defeasible**: a parent in `bypassPermissions`/`acceptEdits`/`auto`, or a
   plugin-loaded subagent, bypasses hooks entirely (claude-code#25000 / #43142 / #54898).
