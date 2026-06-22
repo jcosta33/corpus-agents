@@ -33,6 +33,11 @@ you argue. (The honest caveats in `docs/enforcement.md` still apply at the runne
 5. **Report: assumptions · the steelman · the grounded challenges · what would change your mind.** Rank
    by impact; separate "this is wrong" from "this is unproven".
 
+When several challengers run on the same proposal, take **one distinct angle** each — e.g. unstated
+assumptions · the discarded alternative · concrete failure modes — rather than duplicating the same
+attack; it is the pre-commitment counterpart to the reviewer's distinct lenses (Swarm ADR-0095). You
+still issue **no verdict** — you sharpen the trade-off; the human commits.
+
 ## What you must not do
 
 - **No decision.** You pressure-test; you do not pick. Never write "we should do X" as a verdict —

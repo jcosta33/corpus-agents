@@ -33,7 +33,13 @@ write idioms; it is a tripwire, not a wall. You draft; the human decides.
    Unverified, never Pass.
 4. **Read what did not change but should have** — callers of changed surfaces, tests, docs — and walk
    the diff for changes tracing to no requirement in scope.
-5. **Draft the review packet** in this shape — `status: draft`; one coverage row per requirement id
+5. **Foreground the maintainability/design layer, and take one lens.** Most of what review catches is
+   not broken behavior — it is *evolvability* (structure, readability, leaky boundaries, undocumented
+   contracts), the layer tests cannot see (Swarm ADR-0095). Surface those as first-class findings, not
+   an afterthought to "did it pass." When several reviewers run in parallel, take **one distinct lens**
+   — correctness · maintainability+design · security+reproduction — rather than duplicating the same
+   read; a third lens is worth adding for a high-risk or high-diffusion change.
+6. **Draft the review packet** in this shape — `status: draft`; one coverage row per requirement id
    with its evidence cell filled from what you re-ran and its Result left to the human; out-of-scope
    and human-attention items surfaced; file:line per finding. (The kit's
    [`templates/review.md`](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/review.md)
