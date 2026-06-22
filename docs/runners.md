@@ -12,24 +12,53 @@ swarm-agents model needs, in one place. [code.claude.com/docs/en/sub-agents]
 
 ## The runner landscape (2026)
 
-File-based agent definitions are now plural — which is why founding this member is justified on the
-ecosystem axis:
-- **GitHub Copilot** — custom agents as Markdown+YAML in `.github/agents/*.md`, tool allowlist + MCP
-  scoping. [docs.github.com/en/copilot/reference/custom-agents-configuration]
-- **Gemini CLI** — file-based subagents, a `tools` frontmatter array, inherit-all default.
-  [github.com/google-gemini/gemini-cli — docs/core/subagents.md]
-- **Cursor** — reads `.claude/agents/` directly as a compatibility location, so a Claude Code
-  definition's *prompt/role* is discovered as-is (tool-scoping is only a coarse `readonly` boolean; no
-  provenance). [cursor.com/docs/context/subagents]
+File-based agent definitions are now plural. A 2026 breadth survey (each fact checked against the
+harness's own docs/source) groups them three ways:
+
+- **The markdown + YAML-frontmatter camp** — the prevailing shape, the one swarm-agents already uses:
+  a `name`/`description` header, the body as the system prompt. **Claude Code** (`.claude/agents/`),
+  **Gemini CLI** (`.gemini/agents/*.md`, a `tools` array, inherit-all default
+  [github.com/google-gemini/gemini-cli — docs/core/subagents.md]), **GitHub Copilot**
+  (`.github/agents/*.md`, an *optional* `tools` allowlist — default is all tools
+  [docs.github.com/en/copilot/concepts/agents/cloud-agent/about-custom-agents]), **Cursor**
+  (`.cursor/agents/`), and **Devin CLI** all share it.
+- **The high-leverage cross-reads** — a Claude-Code-shaped file is *already partially portable* with
+  zero conversion: **Cursor reads `.claude/agents/`** as a "Claude compatibility" location
+  [cursor.com/docs/subagents], **VS Code Copilot reads `.claude/agents/*.md`**
+  [code.visualstudio.com/docs/agent-customization/custom-agents], and **Devin imports Claude Code's
+  format**. The catch: only the *prompt/role* travels — Claude's per-tool `tools:` allowlist has no
+  equivalent (Cursor honors only a coarse `readonly`), and the hooks/provenance don't travel.
+- **The carrier outliers** (the real porting cost — not markdown): **OpenAI Codex** is TOML
+  (`.codex/agents/*.toml`: a `developer_instructions` string + an *optional* per-agent `model`)
+  [developers.openai.com/codex/subagents]; **Google Antigravity** defines managed agents
+  *programmatically* (an API/JSON object — fixed base model, no per-agent `model`; not a hand-authored
+  `agent.json`/`agent.yaml` file) [ai.google.dev/gemini-api/docs/custom-agents]. The instruction text
+  must be *projected* into each.
+
+## The universal discipline layer
+
+The survey's strongest finding: a worker's *prose* ports even where the per-agent file format does
+not. **`AGENTS.md`** is an open cross-tool format read across the ecosystem (its site reports 60k+
+projects and lists Codex, Gemini CLI, Cursor, Copilot, Aider, Windsurf, Amp, and more — an open
+format, not a ratified standard [agents.md]); Antigravity's managed runtime auto-loads
+`.agents/AGENTS.md`. And a **`name`+`description` `SKILL.md`** is shared by Claude Code *and*
+Antigravity (`.agents/skills/<name>/SKILL.md`, identical shape
+[ai.google.dev/gemini-api/docs/custom-agents]). So the discipline a swarm worker carries reaches the
+guidance-only harnesses and Antigravity through `AGENTS.md` + `SKILL.md`, even though the per-agent
+*definition* does not.
 
 ## Why no portable file (yet)
 
-The field sets **diverge** (Gemini lacks `disallowedTools`/`permissionMode`/`hooks`; Copilot is
-allowlist-only; Cursor has only `readonly`), and crucially **tool-scoping enforcement and the
-provenance hook do not travel**. So a single "AGENTS.md for subagents" would either lie about
-enforcement on the weaker runners or collapse to the lowest common denominator. The honest scope is:
-**Claude-Code-first definitions now; documented per-runner mappings later, on demonstrated demand.**
-(Cursor users already get the role for free via `.claude/agents/` discovery — minus enforcement.)
+The survey refines, not reverses, the honest picture. A Claude-Code-shaped definition's *role* is
+already portable into Cursor, VS Code Copilot, and Devin via their cross-reads — but **tool-scoping
+enforcement and the provenance hook still do not travel** (the gate-1 finding: the prose discipline
+ports, structural enforcement does not). A single per-agent file across *all* harnesses would either
+lie about enforcement on the weaker runners or collapse to a `name`/`description`/instructions/tool-list
+lowest common denominator, and the two carrier outliers share no markdown file at all. So the honest
+scope is unchanged: **Claude-Code-first definitions now; a portable layer later, on demonstrated
+demand.** The surveyed *direction* (to spec, not a commitment): a canonical core that passes through
+to the markdown camp, two thin adapters (Codex TOML, Antigravity), and `AGENTS.md` + `SKILL.md` as the
+universal discipline layer — built only when demand clears the ADR-0092 gate.
 
 ## Per-agent model — an optional adopter knob (not shipped)
 
