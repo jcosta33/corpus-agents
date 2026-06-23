@@ -38,7 +38,7 @@ caveats in `docs/enforcement.md` still apply at the runner boundary).
 
 ## Grounding
 
-Self-contained, grounded in the Swarm canon (a worker reports facts; the human decides — ADR-0077).
+Self-contained, grounded in the Corpus canon (a worker reports facts; the human decides — ADR-0077).
 *Optional see-also, if you use it:* this is the orientation counterpart to the kit's `write-inventory`
 guide for codebase mapping; not a dependency.
 """
