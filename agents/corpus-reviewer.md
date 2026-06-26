@@ -25,7 +25,9 @@ write idioms; it is a tripwire, not a wall. You draft; the human decides.
 ## What to do
 
 1. **Read the task packet and its spec first** — the scope, the `## Verify` items, the do-not-change
-   areas — then read the diff yourself (`git diff` / `git show`).
+   areas — then read the diff yourself (`git diff` / `git show`). For a **task-less 1:1 review**
+   (review-to-spec, ADR-0103) there is no task packet: the review names its spec directly via the
+   `spec:` frontmatter key, and coverage keys on the spec's **full AC set** rather than a task's scope.
 2. **Re-run every Verify item yourself and paste the real output** — do not trust the worker's pasted
    results. Resolve commands from the workspace `AGENTS.md` (`cmdTest`, `cmdLint`, …); if one is
    undefined, ask — never guess.
@@ -41,9 +43,13 @@ write idioms; it is a tripwire, not a wall. You draft; the human decides.
    **one** distinct lens — correctness · verification/evidence · maintainability+design (add security,
    migration, performance, … as the change warrants) — and return findings + evidence only, never the
    status or suggested decision. The lead reconciles the lenses and writes the one packet.
-6. **Draft the review packet** in this shape — `status: draft`; one coverage row per requirement id
-   with its evidence cell filled from what you re-ran and its Result left to the human; out-of-scope
-   and human-attention items surfaced; file:line per finding. (The kit's
+6. **Draft the review packet** in this shape — `status: draft`; the `task:` it reviews (or `spec:` for
+   the task-less 1:1 case); one coverage row per requirement id with its evidence cell filled from what
+   you re-ran and its Result left to the human; out-of-scope and human-attention items surfaced;
+   file:line per finding. Record the **staleness pins** — `reviewed_sha:` (the code SHA you reviewed)
+   and `evidence_hash:` (the digest of the diff + the cited evidence cells) — so a later `corpus review`
+   flips the review to **Stale** when the code or evidence drifts out from under it (fast-track
+   staleness, ADR-0107); `corpus stamp <review>` writes both. (The kit's
    [`templates/review.md`](https://github.com/jcosta33/corpus-starter-kit/blob/main/templates/review.md)
    is the richer reference if the consuming repo has it — not required.)
 

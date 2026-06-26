@@ -80,7 +80,7 @@ guarantee** (see [The science](#the-science)).
 
 | Agent                                                            | Use it when                                                                                                            |
 | ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| [`corpus-reviewer`](./agents/corpus-reviewer.md)                 | Independently reviewing a finished task/PR — re-run Verify, read the diff, draft the packet, **no verdict**            |
+| [`corpus-reviewer`](./agents/corpus-reviewer.md)                 | Independently reviewing a finished task/PR (or a 1:1 review-to-spec) — re-run Verify, draft the packet + staleness pins, **no verdict** |
 | [`corpus-explorer`](./agents/corpus-explorer.md)                 | Orienting in a codebase read-only — locate/trace how something works and report (no edits, no Bash)                    |
 | [`corpus-evidence-checker`](./agents/corpus-evidence-checker.md) | Re-running a task's Verify items and pasting verbatim output; flagging claims without evidence                         |
 | [`corpus-challenger`](./agents/corpus-challenger.md)             | Pressure-testing a proposal/spec/plan before it is built — assumptions, the steelmanned alternative, external evidence |
@@ -96,7 +96,7 @@ says so). Each refuses to self-issue a verdict.
 
 | Agent                                                      | Use it when                                                                                       |
 | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| [`corpus-spec-author`](./agents/corpus-spec-author.md)     | Drafting a spec from an intake note — verifiable requirements, no smuggled implementation         |
+| [`corpus-spec-author`](./agents/corpus-spec-author.md)     | Drafting (or amending) a living spec — verifiable requirements, open decisions, no smuggled implementation |
 | [`corpus-researcher`](./agents/corpus-researcher.md)       | Investigating one question against primary sources → a research note, committing to no decision   |
 | [`corpus-auditor`](./agents/corpus-auditor.md)             | Auditing a code area — present state, file:line, severity by impact, observation not prescription |
 | [`corpus-documentarian`](./agents/corpus-documentarian.md) | Drafting human-facing docs — one Diátaxis frame, every example run as written                     |
@@ -139,6 +139,15 @@ workspace. Founding decision: [ADR-0092](https://github.com/jcosta33/corpus/blob
 The `ADR-NNNN` citations throughout these docs are decision records in the
 [corpus repo's `docs/adrs/`](https://github.com/jcosta33/corpus/tree/main/docs/adrs) — the gloss beside
 each here is self-sufficient.
+
+The worker definitions track the framework's **mean-and-lean** generation (ADR-0101/0103/0104/0107/0108):
+the `corpus-spec-author` drafts a **living spec** (the `draft → ready → active → superseded` lifecycle,
+open decisions with options + a recommendation, per-requirement supersession, a `snapshot:` SHA, and the
+append-only `## Execution` run-record); the `corpus-reviewer` handles the **task-less 1:1 review-to-spec**
+(coverage on the spec's full ACs via a `spec:` key) and records the **fast-track staleness pins**
+(`reviewed_sha:` + `evidence_hash:`). The matching CLI surface lives in
+[corpus-cli](https://github.com/jcosta33/corpus-cli): `corpus stamp` writes those pins, `corpus check
+--staleness` flags spec drift, and `corpus clean` prunes the now-ephemeral tasks/reviews (ADR-0104).
 
 ## License
 

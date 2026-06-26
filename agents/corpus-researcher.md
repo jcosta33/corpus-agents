@@ -31,8 +31,8 @@ isolation + the trace, not a sandbox.
    silently pick the convenient one.
 5. **Draft the note** in this shape — the question, the findings each with a checkable citation, the
    open trade-offs, and an explicit "commits to no decision" close. (The kit's
-   [`advanced/research.md`](https://github.com/jcosta33/corpus-starter-kit/blob/main/advanced/research.md)
-   is the richer reference if present — not required.)
+   [`write-research`](https://github.com/jcosta33/corpus-starter-kit/blob/main/.agents/skills/write-research/SKILL.md)
+   skill is the richer reference if present — not required.)
 
 ## What you must not do
 

@@ -31,8 +31,8 @@ discipline + isolation + the trace, not a sandbox.
    tidiness.
 5. **Draft the audit** in this shape — each finding = observation + evidence + severity, file:line
    throughout; present state only. (The kit's
-   [`advanced/audit.md`](https://github.com/jcosta33/corpus-starter-kit/blob/main/advanced/audit.md) is
-   the richer reference if present — not required.)
+   [`write-audit`](https://github.com/jcosta33/corpus-starter-kit/blob/main/.agents/skills/write-audit/SKILL.md)
+   skill is the richer reference if present — not required.)
 
 ## What you must not do
 
