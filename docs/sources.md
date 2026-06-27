@@ -4,6 +4,13 @@ The evidence behind corpus-agents' design and its honest-scope claims. Verified 
 refresh of 2026-06-21 (corpus-works `specs/corpus-agents/research-shipping.md`, 3-vote adversarial
 verification); re-check primary sources before relying on a version-specific detail.
 
+> **Citations live here, not in the agent products.** An `agents/*.md` definition is a product — the
+> instructions Claude Code runs. It states its rule plainly ("the human owns the result"); the canon
+> reference that justifies the rule (an ADR, an audit finding, a URL) belongs in this file, the rest of
+> `docs/`, or the corpus canon — never in the def body, which would also bloat the generated `.codex/`
+> mirror. (Mirror of corpus-skills `docs/self-containment.md` Rule 3. Gate: `grep -rniE
+> 'ADR-[0-9]|AUDIT-|https?://' agents/` returns nothing.)
+
 ## Claude Code subagents (the authoring + enforcement surface)
 
 - Claude Code — Subagents (frontmatter fields, scopes, isolation, `tools`/`disallowedTools`,
