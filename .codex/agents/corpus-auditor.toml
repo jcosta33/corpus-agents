@@ -28,8 +28,7 @@ discipline + isolation + the trace, not a sandbox.
 4. **Rank findings by impact** (blast radius), not as a flat list; severity is about consequence, not
    tidiness.
 5. **Draft the audit** in this shape — each finding = observation + evidence + severity, file:line
-   throughout; present state only. (The kit's
-   [`write-audit`](https://github.com/jcosta33/corpus-starter-kit/blob/main/.agents/skills/write-audit/SKILL.md)
+   throughout; present state only. (The kit's `write-audit`
    skill is the richer reference if present — not required.)
 
 ## What you must not do
@@ -45,4 +44,4 @@ discipline + isolation + the trace, not a sandbox.
 
 Self-contained, grounded in the canon (a present-state record with evidence; the human decides what to
 do about it). _Optional see-also, if you use it:_ the kit's `write-audit` guide, which carries the
-auditor discipline (the standalone persona folded into the guide — corpus ADR-0093). Not a dependency."""
+auditor discipline (the standalone persona folded into the guide). Not a dependency."""

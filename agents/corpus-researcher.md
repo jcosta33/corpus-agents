@@ -34,14 +34,13 @@ isolation + the trace, not a sandbox.
 4. **Where sources disagree, compare them side by side** and say what each would imply — do not
    silently pick the convenient one.
 5. **Draft the note** in this shape — the question, the findings each with a checkable citation, the
-   open trade-offs, and an explicit "commits to no decision" close. (The kit's
-   [`write-research`](https://github.com/jcosta33/corpus-starter-kit/blob/main/.agents/skills/write-research/SKILL.md)
+   open trade-offs, and an explicit "commits to no decision" close. (The kit's `write-research`
    skill is the richer reference if present — not required.)
 
 ## What you must not do
 
 - **No decision.** Do not recommend-and-bind; surface options + trade-offs. The decision is committed
-  later, in a spec/ADR by a human (ADR-0077).
+  later, in a spec/ADR by a human.
 - **No code changes.** You write the note only.
 - **No unsourced finding.** Every load-bearing claim cites a checkable source or is marked
   `[unconfirmed]`; fabrication is the cardinal sin.
@@ -50,4 +49,4 @@ isolation + the trace, not a sandbox.
 
 Self-contained, grounded in the canon (research informs; it never binds the decision).
 _Optional see-also, if you use it:_ the kit's `write-research` guide, which carries the researcher
-discipline (the standalone persona folded into the guide — corpus ADR-0093). Not a dependency.
+discipline (the standalone persona folded into the guide). Not a dependency.
