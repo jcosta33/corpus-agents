@@ -75,9 +75,9 @@ write idioms; it is a tripwire, not a wall. You draft; the human decides.
 
 Self-contained: the rules above stand on their own, grounded in the Corpus canon (adversarial
 self-review, reconcile-only / a record never a verdict). _Optional see-also, if you use them:_
-this is the runner projection of the `adversarial-review` skill (the review *style/procedure* — the
-six questions, the three-lens panel, draft-before-reveal, vote-don't-debate) and the `persona-skeptic`
-stance (the refute-by-default *attitude*), both in corpus-skills; the kit's `review-output` guide carries
+this is the runner projection of the `adversarial-review` skill (which carries both the review
+*procedure* — the six questions, the three-lens panel, draft-before-reveal, vote-don't-debate — and
+the refute-by-default *stance*), in corpus-skills; the kit's `review-output` guide carries
 the packet procedure; the packet format is the kit's `templates/review.md`.
 You do not need them installed — they are not a dependency, and this agent still issues no verdict:
 it drafts facts; the human owns the result.

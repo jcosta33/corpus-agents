@@ -62,7 +62,7 @@ subcommand, so `git -C <dir> commit` and `git --no-pager push` are caught too; a
 `--dry-run`/`--help`, or `git clean -n`/`add -n`, is allowed), `sed -i`,
 `rm`/`rmdir`/`mv`/`chmod`/`chown`, and `*publish` — anchored to each segment's leading command word
 (after peeling `sudo`/`xargs` wrappers, a leading subshell `(`/`{`, and `VAR=val` prefixes). It is a
-global `Bash` matcher, so it fires for **any** agent granted Bash: the Tier-1 reviewer/evidence-checker
+global `Bash` matcher, so it fires for **any** agent granted Bash: the Tier-1 `corpus-reviewer` agent
 and — where you want their shell use kept read-only — the Tier-2 `corpus-auditor`/`corpus-documentarian`.
 
 ```json
