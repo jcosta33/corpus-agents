@@ -3,7 +3,7 @@
 # Tool-scoping (the source `tools` allowlist) and PreToolUse/Subagent hooks are Claude-Code-only
 # and do NOT travel — Codex reads `developer_instructions` as the system prompt; grant/deny tools
 # in your Codex config. Do not hand-edit: re-run the emitter to regenerate.
-# Source tools (Claude-Code-enforced, NOT enforced here): Read, Grep, Glob, Bash, Edit, Write
+# Source tool constraints from Claude Code; not portable to this generated adapter: Read, Grep, Glob, Bash, Edit, Write
 
 developer_instructions = """
 # suspec-documentarian
